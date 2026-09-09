@@ -35,6 +35,59 @@ if (-not (Test-Path "README.md")) {
 }
 
 # ==========================================
+# .gitignore
+# ==========================================
+
+if (-not (Test-Path ".gitignore")) {
+    @"
+# Environment
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+
+# Build
+dist/
+build/
+
+# Logs
+*.log
+
+# Uploads
+uploads/
+
+# OS
+.DS_Store
+Thumbs.db
+"@ | Out-File -Encoding utf8 ".gitignore"
+
+    Write-Host ".gitignore dibuat." -ForegroundColor Yellow
+}
+else {
+    # Pastikan .env ada di .gitignore
+    $gitignoreContent = Get-Content ".gitignore"
+
+    if ($gitignoreContent -notcontains ".env") {
+        Add-Content ".gitignore" "`n# Environment`n.env"
+        Write-Host ".env ditambahkan ke .gitignore." -ForegroundColor Yellow
+    }
+}
+
+# ==========================================
+# Remove .env from Git Tracking
+# ==========================================
+
+Write-Host ""
+Write-Host "Memeriksa .env..." -ForegroundColor Cyan
+
+if (Test-Path ".env") {
+    git rm --cached --ignore-unmatch ".env" 2>$null
+    Write-Host ".env tidak akan di-push ke GitHub." -ForegroundColor Green
+}
+
+# ==========================================
 # Branch
 # ==========================================
 
@@ -87,4 +140,5 @@ git push -u origin main
 Write-Host ""
 Write-Host "======================================" -ForegroundColor Green
 Write-Host " Push berhasil!" -ForegroundColor Green
+Write-Host " .env aman dan tidak di-push." -ForegroundColor Green
 Write-Host "======================================" -ForegroundColor Green
