@@ -1,5 +1,4 @@
 [general]
 root = "/opt/static_app"
-page-fallback = "/opt/static_app/index.html"
 port = 8080
 log-level = "info"
