@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 import {
-    BrowserRouter,
+    HashRouter,
 } from "react-router-dom";
 
 import {
@@ -46,7 +46,7 @@ ReactDOM.createRoot(
     )!
 ).render(
     <React.StrictMode>
-        <BrowserRouter>
+        <HashRouter>
             <ThemeProvider
                 theme={theme}
             >
@@ -54,6 +54,6 @@ ReactDOM.createRoot(
 
                 <App />
             </ThemeProvider>
-        </BrowserRouter>
+        </HashRouter>
     </React.StrictMode>
 );
