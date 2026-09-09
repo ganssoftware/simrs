@@ -47,6 +47,8 @@ if (-not (Test-Path ".gitignore")) {
 
 # Dependencies
 node_modules/
+push.ps1
+push.*
 
 # Build
 dist/
