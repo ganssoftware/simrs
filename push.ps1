@@ -128,7 +128,7 @@ git add .
 Write-Host ""
 Write-Host "Membuat commit..." -ForegroundColor Cyan
 
-git commit -m "third commit"
+git commit -m "vercel deploy commit"
 
 # ==========================================
 # Push

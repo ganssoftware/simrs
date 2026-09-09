@@ -31,7 +31,7 @@ import {
 
 const API_URL =
     import.meta.env.VITE_API_URL ||
-    "https://be-simrs.wasmer.app/api";
+    "https://be-simrs.vercel.app/api";
 
 const SERVER_URL =
     API_URL.replace(
