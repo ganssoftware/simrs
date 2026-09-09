@@ -120,7 +120,7 @@ export default function LoginPage() {
 
             const response =
                 await api.post<LoginResponse>(
-                    "api/auth/login",
+                    "/auth/login",
                     {
                         username:
                             username.trim(),
