@@ -7,18 +7,31 @@ const SERVER_URL = API_URL.replace(/\/api\/?$/, "");
 export const getProfilePhotoUrl = (
     profilePhoto?: string | null
 ): string | undefined => {
+    console.log(
+        "PROFILE PHOTO RAW:",
+        profilePhoto
+    );
+
     if (!profilePhoto) {
         return undefined;
     }
 
-    // Kalau sudah URL lengkap
     if (
         profilePhoto.startsWith("http://") ||
         profilePhoto.startsWith("https://")
     ) {
+        console.log(
+            "PROFILE PHOTO FULL URL:",
+            profilePhoto
+        );
+
         return profilePhoto;
     }
 
-    // Kalau path dari backend
+    console.log(
+        "PROFILE PHOTO RELATIVE:",
+        profilePhoto
+    );
+
     return `${SERVER_URL}${profilePhoto}`;
 };
