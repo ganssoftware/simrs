@@ -33,11 +33,27 @@ const API_URL =
     import.meta.env.VITE_API_URL ||
     "https://be-simrs.vercel.app/api";
 
-const SERVER_URL =
-    API_URL.replace(
+const getProfileImageUrl = (
+    profilePhoto: string | null | undefined
+) => {
+    if (!profilePhoto) {
+        return null;
+    }
+
+    if (
+        profilePhoto.startsWith("http://") ||
+        profilePhoto.startsWith("https://")
+    ) {
+        return profilePhoto;
+    }
+
+    const serverUrl = API_URL.replace(
         /\/api$/,
         ""
     );
+
+    return `${serverUrl}${profilePhoto}`;
+};
 
 export default function ProfileForm() {
     const user = useAuthStore(
@@ -109,9 +125,7 @@ export default function ProfileForm() {
         );
 
         if (user.profile_photo) {
-            setPreview(
-                `${SERVER_URL}${user.profile_photo}`
-            );
+            setPreview(user.profile_photo);
         } else {
             setPreview(null);
         }
@@ -258,7 +272,7 @@ export default function ProfileForm() {
                 response.data.profile_photo
             ) {
                 setPreview(
-                    `${SERVER_URL}${response.data.profile_photo}`
+                    response.data.profile_photo
                 );
             }
 
