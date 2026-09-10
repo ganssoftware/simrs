@@ -29,32 +29,6 @@ import {
     updateProfile,
 } from "../../services/profileService";
 
-const API_URL =
-    import.meta.env.VITE_API_URL ||
-    "https://be-simrs.vercel.app/api";
-
-const getProfileImageUrl = (
-    profilePhoto: string | null | undefined
-) => {
-    if (!profilePhoto) {
-        return null;
-    }
-
-    if (
-        profilePhoto.startsWith("http://") ||
-        profilePhoto.startsWith("https://")
-    ) {
-        return profilePhoto;
-    }
-
-    const serverUrl = API_URL.replace(
-        /\/api$/,
-        ""
-    );
-
-    return `${serverUrl}${profilePhoto}`;
-};
-
 export default function ProfileForm() {
     const user = useAuthStore(
         (state) => state.user
